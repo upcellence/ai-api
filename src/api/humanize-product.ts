@@ -1,7 +1,3 @@
-import { defineHandler } from 'h3'
-import { upcellenceAI } from '../gemini/index.js'
-import { productSchema } from '../gemini/schema.js'
-
 export class ProductData {
 	product_name
 	specs
@@ -48,48 +44,48 @@ export class ProductData {
 	}
 }
 
-export default defineHandler(async ({ req, res }) => {
-	if (req.method.toUpperCase() === 'GET') {
-		return {
-			message: 'Method not allowed',
-			status: 405,
-			usage: {
-				method: 'POST',
-				body: {
-					description_html: 'string',
-					keywords: 'string',
-					prompt: 'string',
-					selected_voice: 'string',
-					specs: 'string',
-					title: 'string',
-				},
-			},
-		}
-	} else if (req.method.toUpperCase() === 'POST') {
-		const { prompt, title, specs, description_html, selected_voice, keywords } =
-			(await req.json()) as {
-				prompt: string
-				title: string
-				specs: string
-				description_html: string
-				selected_voice: string
-				keywords: string
-			}
+// export default defineHandler(async ({ req, res }) => {
+// 	if (req.method.toUpperCase() === 'GET') {
+// 		return {
+// 			message: 'Method not allowed',
+// 			status: 405,
+// 			usage: {
+// 				method: 'POST',
+// 				body: {
+// 					description_html: 'string',
+// 					keywords: 'string',
+// 					prompt: 'string',
+// 					selected_voice: 'string',
+// 					specs: 'string',
+// 					title: 'string',
+// 				},
+// 			},
+// 		}
+// 	} else if (req.method.toUpperCase() === 'POST') {
+// 		const { prompt, title, specs, description_html, selected_voice, keywords } =
+// 			(await req.json()) as {
+// 				prompt: string
+// 				title: string
+// 				specs: string
+// 				description_html: string
+// 				selected_voice: string
+// 				keywords: string
+// 			}
 
-		if (!title || !specs || !keywords || !selected_voice || !description_html) {
-			return { message: 'Provide all required fields', status: 401 }
-		}
+// 		if (!title || !specs || !keywords || !selected_voice || !description_html) {
+// 			return { message: 'Provide all required fields', status: 401 }
+// 		}
 
-		const productData = new ProductData({
-			title: title!,
-			specs: specs!,
-			description_html: description_html!,
-			selected_voice: selected_voice!,
-			keywords: keywords!,
-		})
-		const response = await upcellenceAI.humanizeProduct(prompt, productData)
-		return productSchema.parse(
-			JSON.parse(response.text ?? JSON.stringify({ ...response.candidates?.[0] }))
-		)
-	}
-})
+// 		const productData = new ProductData({
+// 			title: title!,
+// 			specs: specs!,
+// 			description_html: description_html!,
+// 			selected_voice: selected_voice!,
+// 			keywords: keywords!,
+// 		})
+// 		const response = await upcellenceAI.humanizeProduct(prompt, productData)
+// 		return productSchema.parse(
+// 			JSON.parse(response.text ?? JSON.stringify({ ...response.candidates?.[0] }))
+// 		)
+// 	}
+// })
