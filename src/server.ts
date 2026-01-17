@@ -15,11 +15,11 @@ app.use(({ req, res }, next) => {
 	res.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
 	// Allow credentials (if your frontend sends cookies/auth headers)
 	res.headers.set('Access-Control-Allow-Credentials', 'true')
+
 	// Handle preflight requests
+	res.status = 200
 	if (req.method === 'OPTIONS') {
-		return new Response(null, {
-			status: 204,
-		})
+		return { status: 204 }
 	}
 	next()
 })
