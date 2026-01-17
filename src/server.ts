@@ -8,11 +8,15 @@ config()
 
 const app = new H3({ debug: true, onError: console.error })
 
-app.use(async ({ res }, next) => {
+app.use(async ({ res, req }, next) => {
 	res.headers.set('Access-Control-Allow-Origin', '*')
 	res.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')
 	res.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
 	res.headers.set('Access-Control-Allow-Credentials', 'true')
+	req.headers.set('Access-Control-Allow-Origin', '*')
+	req.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')
+	req.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+	req.headers.set('Access-Control-Allow-Credentials', 'true')
 	await next()
 })
 
