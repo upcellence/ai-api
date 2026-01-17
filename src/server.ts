@@ -1,6 +1,6 @@
 import { config } from 'dotenv'
 import { H3, serve } from 'h3'
-import humanizeProduct from './api/humanize-product.mjs'
+import humanizeProduct from './api/humanize-product.js'
 
 config()
 

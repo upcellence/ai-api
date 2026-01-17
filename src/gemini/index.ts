@@ -1,5 +1,5 @@
 import { config } from 'dotenv'
-import { UpcellenceAI } from './gemini.mjs'
+import { UpcellenceAI } from './gemini.js'
 
 config()
 
