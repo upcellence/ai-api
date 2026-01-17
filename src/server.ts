@@ -19,7 +19,16 @@ app.use(async ({ res }, next) => {
 app.all('/humanize-product', async ({ req, res }) => {
 	if (req.method.toUpperCase() === 'OPTIONS') {
 		res.status = 200
-		return { status: 204 }
+		return new Response(null, {
+			headers: new Headers({
+				'Access-Control-Allow-Origin': '*',
+				'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+				'Access-Control-Allow-Headers': 'Content-Type',
+				'Access-Control-Max-Age': '86400',
+			}),
+			status: 200,
+			statusText: 'OK',
+		})
 	}
 	if (req.method.toUpperCase() === 'GET') {
 		return {
