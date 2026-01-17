@@ -92,8 +92,6 @@ export default defineHandler({
 			return productSchema.parse(
 				JSON.parse(response.text ?? JSON.stringify({ ...response.candidates?.[0] }))
 			)
-		} else {
-			return { message: 'Method not allowed', status: 405 }
 		}
 	},
 	middleware: [
