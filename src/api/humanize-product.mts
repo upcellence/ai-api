@@ -1,6 +1,6 @@
 import { defineEventHandler } from 'h3'
-import { upcellenceAI } from '../gemini/index.ts'
-import { productSchema } from '../gemini/schema.mts'
+import { upcellenceAI } from '../gemini/index.js'
+import { productSchema } from '../gemini/schema.mjs'
 
 export class ProductData {
 	product_name

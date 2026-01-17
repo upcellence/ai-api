@@ -1,7 +1,9 @@
 {
 	// Visit https://aka.ms/tsconfig to read more about this file
 	"compilerOptions": {
-		"allowImportingTsExtensions": true,
+		"allowImportingTsExtensions": false,
+		"allowJs": true,
+		"allowSyntheticDefaultImports": true,
 		"declaration": true,
 		"declarationMap": true,
 		"esModuleInterop": true,
@@ -15,7 +17,7 @@
 		// See also https://aka.ms/tsconfig/module
 		"module": "NodeNext",
 		"moduleDetection": "force",
-		"noEmit": true,
+		// "noEmit": false,
 		// Stricter Typechecking Options
 		"noUncheckedIndexedAccess": true,
 		"noUncheckedSideEffectImports": true,

@@ -24,7 +24,8 @@
   "scripts": {
     "test": "node ./test.mts",
     "dev": "node --watch --watch-path=./src ./src/server.mts",
-    "build": "tsc"
+    "build": "tsc",
+    "start": "node ./dist/server.mjs"
   },
   "dependencies": {
     "@google/genai": "^1.37.0",

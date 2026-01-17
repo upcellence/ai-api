@@ -1,8 +1,8 @@
 import { GoogleGenAI, type GoogleGenAIOptions } from '@google/genai'
 import { zodToJsonSchema } from 'zod-to-json-schema'
 import type { ZodType, ZodTypeDef } from 'zod/v3'
-import type { ProductData } from '../api/humanize-product.mts'
-import { productSchema } from './schema.mts'
+import { ProductData } from '../api/humanize-product.mjs'
+import { productSchema } from './schema.mjs'
 
 export class UpcellenceAI {
 	private _ai: GoogleGenAI
