@@ -49,16 +49,6 @@ export class ProductData {
 }
 
 export default defineHandler(async ({ req, res }) => {
-	req.headers.set('Access-Control-Allow-Origin', '*')
-	req.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
-	req.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-	req.headers.set('Access-Control-Max-Age', '86400')
-
-	res.headers.set('Access-Control-Allow-Origin', '*')
-	res.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
-	res.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-	res.headers.set('Access-Control-Max-Age', '86400')
-
 	if (req.method.toUpperCase() === 'GET') {
 		return {
 			message: 'Method not allowed',
