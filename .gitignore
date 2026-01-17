@@ -2,6 +2,7 @@
 # Folders
 .dist
 .idea
+dist
 
 # Libs
 /node_modules/
