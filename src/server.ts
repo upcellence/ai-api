@@ -8,25 +8,19 @@ config()
 
 const app = new H3({ debug: true, onError: console.error })
 
-app.use('*', async ({ req, res }, next) => {
-	// Set the allowed origin
-	res.headers.set('Access-Control-Allow-Origin', 'https://extensions.shopifycdn.com')
-	// Set the allowed methods
+app.use(async ({ res }, next) => {
+	res.headers.set('Access-Control-Allow-Origin', '*')
 	res.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')
-	// Set the allowed headers
 	res.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-	// Allow credentials (if your frontend sends cookies/auth headers)
 	res.headers.set('Access-Control-Allow-Credentials', 'true')
-
-	// Handle preflight requests
-	res.status = 200
-	if (req.method === 'OPTIONS') {
-		return { status: 204 }
-	}
-	return await next()
+	await next()
 })
 
 app.all('/humanize-product', async ({ req, res }) => {
+	if (req.method.toUpperCase() === 'OPTIONS') {
+		res.status = 200
+		return { status: 204 }
+	}
 	if (req.method.toUpperCase() === 'GET') {
 		return {
 			message: 'Method not allowed',
@@ -79,4 +73,4 @@ app.get('/', async (e) => {
 export const POST = app.fetch
 export const GET = app.fetch
 
-serve(app, {})
+if (process.env.DEV === 'true') serve(app, {})
